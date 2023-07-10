@@ -146,7 +146,7 @@ See [examples/sveltejs-svelte.csv](examples/sveltejs-svelte.csv) for the output.
 $ starred_repo_finder --limit=50 --format=json duckdb/duckdb > examples/duckdb-duckdb.json
 ```
 
-See [examples/duckdb/duckdb.json](examples/duckdb-duckdb.json) for the output.
+See [examples/duckdb-duckdb.json](examples/duckdb-duckdb.json) for the output.
 
 #### Write the top 50 GitHub repositories with the most shared stargazers to `Ionaru/easy-markdown-editor` to a markdown file:
 
