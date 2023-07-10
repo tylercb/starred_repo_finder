@@ -29,7 +29,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           bumpversion patch
-          git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/tylercb/starred_repo_finder.git
+          git push https://tylercb:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/tylercb/starred_repo_finder.git main
 
       - name: Create Release
         id: create_release
