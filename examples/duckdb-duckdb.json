@@ -1,0 +1,352 @@
+[
+    {
+        "repo_name": "duckdb/duckdb",
+        "github_url": "https://github.com/duckdb/duckdb",
+        "stargazers": 7817,
+        "forkers": 292,
+        "ratio": 26.77
+    },
+    {
+        "repo_name": "donnemartin/system-design-primer",
+        "github_url": "https://github.com/donnemartin/system-design-primer",
+        "stargazers": 2332,
+        "forkers": 196,
+        "ratio": 11.9
+    },
+    {
+        "repo_name": "sindresorhus/awesome",
+        "github_url": "https://github.com/sindresorhus/awesome",
+        "stargazers": 2019,
+        "forkers": 152,
+        "ratio": 13.28
+    },
+    {
+        "repo_name": "tauri-apps/tauri",
+        "github_url": "https://github.com/tauri-apps/tauri",
+        "stargazers": 1937,
+        "forkers": 35,
+        "ratio": 55.34
+    },
+    {
+        "repo_name": "tensorflow/tensorflow",
+        "github_url": "https://github.com/tensorflow/tensorflow",
+        "stargazers": 1850,
+        "forkers": 246,
+        "ratio": 7.52
+    },
+    {
+        "repo_name": "pola-rs/polars",
+        "github_url": "https://github.com/pola-rs/polars",
+        "stargazers": 1768,
+        "forkers": 81,
+        "ratio": 21.83
+    },
+    {
+        "repo_name": "tiangolo/fastapi",
+        "github_url": "https://github.com/tiangolo/fastapi",
+        "stargazers": 1765,
+        "forkers": 67,
+        "ratio": 26.34
+    },
+    {
+        "repo_name": "supabase/supabase",
+        "github_url": "https://github.com/supabase/supabase",
+        "stargazers": 1699,
+        "forkers": 62,
+        "ratio": 27.4
+    },
+    {
+        "repo_name": "jlevy/the-art-of-command-line",
+        "github_url": "https://github.com/jlevy/the-art-of-command-line",
+        "stargazers": 1678,
+        "forkers": 90,
+        "ratio": 18.64
+    },
+    {
+        "repo_name": "rust-lang/rust",
+        "github_url": "https://github.com/rust-lang/rust",
+        "stargazers": 1667,
+        "forkers": 127,
+        "ratio": 13.13
+    },
+    {
+        "repo_name": "golang/go",
+        "github_url": "https://github.com/golang/go",
+        "stargazers": 1658,
+        "forkers": 157,
+        "ratio": 10.56
+    },
+    {
+        "repo_name": "huggingface/transformers",
+        "github_url": "https://github.com/huggingface/transformers",
+        "stargazers": 1649,
+        "forkers": 90,
+        "ratio": 18.32
+    },
+    {
+        "repo_name": "facebook/rocksdb",
+        "github_url": "https://github.com/facebook/rocksdb",
+        "stargazers": 1634,
+        "forkers": 160,
+        "ratio": 10.21
+    },
+    {
+        "repo_name": "ClickHouse/ClickHouse",
+        "github_url": "https://github.com/ClickHouse/ClickHouse",
+        "stargazers": 1629,
+        "forkers": 196,
+        "ratio": 8.31
+    },
+    {
+        "repo_name": "cockroachdb/cockroach",
+        "github_url": "https://github.com/cockroachdb/cockroach",
+        "stargazers": 1617,
+        "forkers": 121,
+        "ratio": 13.36
+    },
+    {
+        "repo_name": "vinta/awesome-python",
+        "github_url": "https://github.com/vinta/awesome-python",
+        "stargazers": 1602,
+        "forkers": 133,
+        "ratio": 12.05
+    },
+    {
+        "repo_name": "avelino/awesome-go",
+        "github_url": "https://github.com/avelino/awesome-go",
+        "stargazers": 1575,
+        "forkers": 135,
+        "ratio": 11.67
+    },
+    {
+        "repo_name": "pingcap/tidb",
+        "github_url": "https://github.com/pingcap/tidb",
+        "stargazers": 1545,
+        "forkers": 198,
+        "ratio": 7.8
+    },
+    {
+        "repo_name": "minio/minio",
+        "github_url": "https://github.com/minio/minio",
+        "stargazers": 1545,
+        "forkers": 67,
+        "ratio": 23.06
+    },
+    {
+        "repo_name": "papers-we-love/papers-we-love",
+        "github_url": "https://github.com/papers-we-love/papers-we-love",
+        "stargazers": 1537,
+        "forkers": 56,
+        "ratio": 27.45
+    },
+    {
+        "repo_name": "kamranahmedse/developer-roadmap",
+        "github_url": "https://github.com/kamranahmedse/developer-roadmap",
+        "stargazers": 1534,
+        "forkers": 85,
+        "ratio": 18.05
+    },
+    {
+        "repo_name": "danistefanovic/build-your-own-x",
+        "github_url": "https://github.com/danistefanovic/build-your-own-x",
+        "stargazers": 1525,
+        "forkers": 86,
+        "ratio": 17.73
+    },
+    {
+        "repo_name": "excalidraw/excalidraw",
+        "github_url": "https://github.com/excalidraw/excalidraw",
+        "stargazers": 1508,
+        "forkers": 52,
+        "ratio": 29.0
+    },
+    {
+        "repo_name": "prometheus/prometheus",
+        "github_url": "https://github.com/prometheus/prometheus",
+        "stargazers": 1505,
+        "forkers": 105,
+        "ratio": 14.33
+    },
+    {
+        "repo_name": "kubernetes/kubernetes",
+        "github_url": "https://github.com/kubernetes/kubernetes",
+        "stargazers": 1505,
+        "forkers": 209,
+        "ratio": 7.2
+    },
+    {
+        "repo_name": "metabase/metabase",
+        "github_url": "https://github.com/metabase/metabase",
+        "stargazers": 1495,
+        "forkers": 72,
+        "ratio": 20.76
+    },
+    {
+        "repo_name": "apache/arrow",
+        "github_url": "https://github.com/apache/arrow",
+        "stargazers": 1486,
+        "forkers": 145,
+        "ratio": 10.25
+    },
+    {
+        "repo_name": "facebook/react",
+        "github_url": "https://github.com/facebook/react",
+        "stargazers": 1477,
+        "forkers": 114,
+        "ratio": 12.96
+    },
+    {
+        "repo_name": "nocodb/nocodb",
+        "github_url": "https://github.com/nocodb/nocodb",
+        "stargazers": 1464,
+        "forkers": 31,
+        "ratio": 47.23
+    },
+    {
+        "repo_name": "grafana/grafana",
+        "github_url": "https://github.com/grafana/grafana",
+        "stargazers": 1462,
+        "forkers": 106,
+        "ratio": 13.79
+    },
+    {
+        "repo_name": "TheAlgorithms/Python",
+        "github_url": "https://github.com/TheAlgorithms/Python",
+        "stargazers": 1455,
+        "forkers": 105,
+        "ratio": 13.86
+    },
+    {
+        "repo_name": "torvalds/linux",
+        "github_url": "https://github.com/torvalds/linux",
+        "stargazers": 1449,
+        "forkers": 197,
+        "ratio": 7.36
+    },
+    {
+        "repo_name": "microsoft/playwright",
+        "github_url": "https://github.com/microsoft/playwright",
+        "stargazers": 1440,
+        "forkers": 28,
+        "ratio": 51.43
+    },
+    {
+        "repo_name": "sveltejs/svelte",
+        "github_url": "https://github.com/sveltejs/svelte",
+        "stargazers": 1437,
+        "forkers": 43,
+        "ratio": 33.42
+    },
+    {
+        "repo_name": "hwchase17/langchain",
+        "github_url": "https://github.com/hwchase17/langchain",
+        "stargazers": 1434,
+        "forkers": 88,
+        "ratio": 16.3
+    },
+    {
+        "repo_name": "flutter/flutter",
+        "github_url": "https://github.com/flutter/flutter",
+        "stargazers": 1433,
+        "forkers": 61,
+        "ratio": 23.49
+    },
+    {
+        "repo_name": "google/leveldb",
+        "github_url": "https://github.com/google/leveldb",
+        "stargazers": 1428,
+        "forkers": 214,
+        "ratio": 6.67
+    },
+    {
+        "repo_name": "dragonflydb/dragonfly",
+        "github_url": "https://github.com/dragonflydb/dragonfly",
+        "stargazers": 1416,
+        "forkers": 33,
+        "ratio": 42.91
+    },
+    {
+        "repo_name": "gin-gonic/gin",
+        "github_url": "https://github.com/gin-gonic/gin",
+        "stargazers": 1405,
+        "forkers": 75,
+        "ratio": 18.73
+    },
+    {
+        "repo_name": "ray-project/ray",
+        "github_url": "https://github.com/ray-project/ray",
+        "stargazers": 1400,
+        "forkers": 76,
+        "ratio": 18.42
+    },
+    {
+        "repo_name": "milvus-io/milvus",
+        "github_url": "https://github.com/milvus-io/milvus",
+        "stargazers": 1358,
+        "forkers": 65,
+        "ratio": 20.89
+    },
+    {
+        "repo_name": "jwasham/coding-interview-university",
+        "github_url": "https://github.com/jwasham/coding-interview-university",
+        "stargazers": 1353,
+        "forkers": 150,
+        "ratio": 9.02
+    },
+    {
+        "repo_name": "denoland/deno",
+        "github_url": "https://github.com/denoland/deno",
+        "stargazers": 1346,
+        "forkers": 59,
+        "ratio": 22.81
+    },
+    {
+        "repo_name": "pytorch/pytorch",
+        "github_url": "https://github.com/pytorch/pytorch",
+        "stargazers": 1337,
+        "forkers": 116,
+        "ratio": 11.53
+    },
+    {
+        "repo_name": "junegunn/fzf",
+        "github_url": "https://github.com/junegunn/fzf",
+        "stargazers": 1332,
+        "forkers": 35,
+        "ratio": 38.06
+    },
+    {
+        "repo_name": "BurntSushi/ripgrep",
+        "github_url": "https://github.com/BurntSushi/ripgrep",
+        "stargazers": 1322,
+        "forkers": 34,
+        "ratio": 38.88
+    },
+    {
+        "repo_name": "syncthing/syncthing",
+        "github_url": "https://github.com/syncthing/syncthing",
+        "stargazers": 1309,
+        "forkers": 60,
+        "ratio": 21.82
+    },
+    {
+        "repo_name": "neovim/neovim",
+        "github_url": "https://github.com/neovim/neovim",
+        "stargazers": 1291,
+        "forkers": 53,
+        "ratio": 24.36
+    },
+    {
+        "repo_name": "rustdesk/rustdesk",
+        "github_url": "https://github.com/rustdesk/rustdesk",
+        "stargazers": 1274,
+        "forkers": 31,
+        "ratio": 41.1
+    },
+    {
+        "repo_name": "vuejs/vue",
+        "github_url": "https://github.com/vuejs/vue",
+        "stargazers": 1266,
+        "forkers": 70,
+        "ratio": 18.09
+    }
+]
