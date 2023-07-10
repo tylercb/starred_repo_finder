@@ -3,7 +3,7 @@ name: Bump version and create a release
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   create:
