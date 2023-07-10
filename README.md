@@ -2,6 +2,14 @@
 
 A simple command line tool to find and explore GitHub repositories through stargazers for a given repository.
 
+Features:
+
+- Find all repositories that are starred by the stargazers of a given repository
+- Filter results by minimum number of stargazers, forkers, and ratio of stargazers to forkers
+- Order results by stargazers, forkers, and ratio of stargazers to forkers
+- Output results in table, CSV, JSON, and markdown formats
+- Uses the [GitHub Events Dataset](https://clickhouse.com/docs/en/getting-started/example-datasets/github-events) and [ClickHouse](https://clickhouse.com) to query the data
+
 ## Installation
 
 ```bash
@@ -34,6 +42,7 @@ pytest
 Command line usage:
 
 ```bash
+$ starred_repo_finder --help
 usage: starred_repo_finder [-h] [-l LIMIT] [-o {stargazers,forkers,ratio}] [-s STARGAZERS] [-f FORKERS] [-r RATIO]
                            [-fmt {table,csv,json,markdown}]
                            repo_name
@@ -58,6 +67,14 @@ options:
 ```
 
 ## Examples
+
+#### Find the top 100 shared GitHub repositories by stars for stargazers of the `Elderjs/elderjs` repo:
+
+```bash
+$ starred_repo_finder Elderjs/elderjs
+```
+
+![Screenshot](https://github.com/tylercb/starred_repo_finder/raw/main/screenshot.png)
 
 #### Find the top 10 shared GitHub repositories by stars for stargazers of the `facebook/react` repo, from repos with a minimum of 10,000 stargazers, 1,000 forkers, and a ratio of at least 10 stargazers to each forkers:
 
@@ -131,14 +148,6 @@ $ starred_repo_finder --limit=25 --order=ratio --forkers=5 --format=markdown the
 | [microsoft/Web-Dev-For-Beginners](https://github.com/microsoft/Web-Dev-For-Beginners) | 92 | 6 | 15.33 |
 | [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra) | 76 | 5 | 15.2 |
 | [florinpop17/app-ideas](https://github.com/florinpop17/app-ideas) | 75 | 5 | 15.0 |
-
-#### Find the top 100 shared GitHub repositories by stars for stargazers of the `Elderjs/elderjs` repo:
-
-```bash
-$ starred_repo_finder Elderjs/elderjs
-```
-
-![Screenshot](https://github.com/tylercb/starred_repo_finder/raw/main/screenshot.png)
 
 #### Write the top 100 shared GitHub repositories by stars for stargazers of the `sveltejs/svelte` repo to a CSV file:
 
