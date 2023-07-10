@@ -132,13 +132,21 @@ $ starred_repo_finder --limit=25 --order=ratio --forkers=5 --format=markdown the
 | [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra) | 76 | 5 | 15.2 |
 | [florinpop17/app-ideas](https://github.com/florinpop17/app-ideas) | 75 | 5 | 15.0 |
 
+#### Find the top 100 shared GitHub repositories by stars for stargazers of the `Elderjs/elderjs` repo:
+
+```bash
+$ starred_repo_finder Elderjs/elderjs
+```
+
+![Screenshot](https://github.com/tylercb/starred_repo_finder/raw/main/screenshot.png)
+
 #### Write the top 100 shared GitHub repositories by stars for stargazers of the `sveltejs/svelte` repo to a CSV file:
 
 ```bash
 $ starred_repo_finder --limit=100 --format=csv sveltejs/svelte > examples/sveltejs-svelte.csv
 ```
 
-See [examples/sveltejs-svelte.csv](examples/sveltejs-svelte.csv) for the output.
+See [examples/sveltejs-svelte.csv](https://github.com/tylercb/starred_repo_finder/blob/main/examples/sveltejs-svelte.csv) for the output.
 
 #### Write the top 50 shared GitHub repositories by stars for stargazers of the `duckdb/duckdb` repo to a JSON file:
 
@@ -146,7 +154,7 @@ See [examples/sveltejs-svelte.csv](examples/sveltejs-svelte.csv) for the output.
 $ starred_repo_finder --limit=50 --format=json duckdb/duckdb > examples/duckdb-duckdb.json
 ```
 
-See [examples/duckdb-duckdb.json](examples/duckdb-duckdb.json) for the output.
+See [examples/duckdb-duckdb.json](https://github.com/tylercb/starred_repo_finder/blob/main/examples/duckdb-duckdb.json) for the output.
 
 #### Write the top 50 shared GitHub repositories by stars for stargazers of the `Ionaru/easy-markdown-editor` repo to a markdown file:
 
@@ -154,4 +162,18 @@ See [examples/duckdb-duckdb.json](examples/duckdb-duckdb.json) for the output.
 $ starred_repo_finder --limit=50 --format=markdown Ionaru/easy-markdown-editor > examples/ionaru-easy-markdown-editor.md
 ```
 
-See [examples/ionaru-easy-markdown-editor.md](examples/ionaru-easy-markdown-editor.md) for the output.
+See [examples/ionaru-easy-markdown-editor.md](https://github.com/tylercb/starred_repo_finder/blob/main/examples/ionaru-easy-markdown-editor.md) for the output.
+
+## Acknowledgements
+
+- [ClickHouse Playground](https://clickhouse.com/docs/en/getting-started/playground)
+- [ClickHouse Query](https://play.clickhouse.com/play)
+- [GitHub Events Dataset](https://clickhouse.com/docs/en/getting-started/example-datasets/github-events)
+
+## Contributing
+
+Contributions are welcome! Negative feedback is also welcome, but please be constructive. If you have a feature request, please open an issue first to discuss it. If you want to contribute code, please open an issue first to discuss it. If you want to contribute documentation, please open an issue first to discuss it. If you want to contribute an example, please open an issue first to discuss it. If you want to contribute a bug fix, please open an issue first to discuss it. If you want to contribute a test, please open an issue first to discuss it. If you want to contribute anything else, please open an issue first to discuss it. If you want to contribute a donation, please open an issue first to discuss it.
+
+## License
+
+[MIT](LICENSE)
