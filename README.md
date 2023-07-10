@@ -59,7 +59,7 @@ options:
 
 ## Examples
 
-#### Find the top 10 GitHub repositories with the most shared stargazers to `facebook/react`, with a minimum of 10,000 stargazers, 1,000 forkers, and a ratio of at least 10 stargazers to forkers:
+#### Find the top 10 shared GitHub repositories by stars for stargazers of the `facebook/react` repo, from repos with a minimum of 10,000 stargazers, 1,000 forkers, and a ratio of at least 10 stargazers to each forkers:
 
 ```bash
 $ starred_repo_finder --limit=10 --order=ratio --stargazers=10000 --forkers=1000 --ratio=10 --format=markdown facebook/react
@@ -78,7 +78,7 @@ $ starred_repo_finder --limit=10 --order=ratio --stargazers=10000 --forkers=1000
 | [thedaviddias/Front-End-Checklist](https://github.com/thedaviddias/Front-End-Checklist) | 18298 | 1024 | 17.87 |
 | [danistefanovic/build-your-own-x](https://github.com/danistefanovic/build-your-own-x) | 20732 | 1209 | 17.15 |
 
-#### Find the top 10 GitHub repositories with the most shared stargazers to `pulumi/templates` in the default CLI [rich table](https://rich.readthedocs.io/en/stable/tables.html) format:
+#### Find the top 10 shared GitHub repositories by stars for stargazers of the `pulumi/templates` repo, using the default CLI [rich table](https://rich.readthedocs.io/en/stable/tables.html) output format:
 
 ```bash
 $ starred_repo_finder --limit=10 pulumi/templates
@@ -99,7 +99,7 @@ $ starred_repo_finder --limit=10 pulumi/templates
 └───────────────────────────────────┴────────────┴─────────┴───────┘
 ```
 
-#### Find the top 25 GitHub repositories with the most shared stargazers to `theOehrly/Fast-F1`, with a minimum of 5 forkers ordered by ratio in markdown format:
+#### Find the top 25 shared GitHub repositories by stars for stargazers of the `theOehrly/Fast-F1` repo, from repos with a minimum of 5 forkers ordered by ratio in markdown format:
 
 ```bash
 $ starred_repo_finder --limit=25 --order=ratio --forkers=5 --format=markdown theOehrly/Fast-F1
@@ -132,7 +132,7 @@ $ starred_repo_finder --limit=25 --order=ratio --forkers=5 --format=markdown the
 | [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra) | 76 | 5 | 15.2 |
 | [florinpop17/app-ideas](https://github.com/florinpop17/app-ideas) | 75 | 5 | 15.0 |
 
-#### Write the top 100 GitHub repositories with the most shared stargazers to `sveltejs/svelte` to a CSV file:
+#### Write the top 100 shared GitHub repositories by stars for stargazers of the `sveltejs/svelte` repo to a CSV file:
 
 ```bash
 $ starred_repo_finder --limit=100 --format=csv sveltejs/svelte > examples/sveltejs-svelte.csv
@@ -140,7 +140,7 @@ $ starred_repo_finder --limit=100 --format=csv sveltejs/svelte > examples/svelte
 
 See [examples/sveltejs-svelte.csv](examples/sveltejs-svelte.csv) for the output.
 
-#### Write the top 50 GitHub repositories with the most shared stargazers to `duckdb/duckdb` to a JSON file:
+#### Write the top 50 shared GitHub repositories by stars for stargazers of the `duckdb/duckdb` repo to a JSON file:
 
 ```bash
 $ starred_repo_finder --limit=50 --format=json duckdb/duckdb > examples/duckdb-duckdb.json
@@ -148,7 +148,7 @@ $ starred_repo_finder --limit=50 --format=json duckdb/duckdb > examples/duckdb-d
 
 See [examples/duckdb-duckdb.json](examples/duckdb-duckdb.json) for the output.
 
-#### Write the top 50 GitHub repositories with the most shared stargazers to `Ionaru/easy-markdown-editor` to a markdown file:
+#### Write the top 50 shared GitHub repositories by stars for stargazers of the `Ionaru/easy-markdown-editor` repo to a markdown file:
 
 ```bash
 $ starred_repo_finder --limit=50 --format=markdown Ionaru/easy-markdown-editor > examples/ionaru-easy-markdown-editor.md
