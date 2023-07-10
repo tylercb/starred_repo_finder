@@ -151,7 +151,7 @@ def print_results(results, output_format):
         console.print(output)
 
 
-def run(repo_name, limit, order_by, stargazers, forkers, ratio, output_format):
+def run(repo_name, limit =  100, order_by = "stargazers", stargazers = None, forkers = None, ratio = None, output_format = "table"):
     """
     Run the script.
     """
