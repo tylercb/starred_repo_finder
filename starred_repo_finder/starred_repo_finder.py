@@ -142,7 +142,7 @@ def print_results(results, output_format):
         console.print("No results found", style="bold red")
         return
 
-    _, output = convert_and_format_results(results, output_format)
+    results, output = convert_and_format_results(results, output_format)
 
     # Don't use rich for csv, json, or markdown output
     if output_format in ["csv", "json", "markdown"]:
@@ -150,8 +150,18 @@ def print_results(results, output_format):
     else:
         console.print(output)
 
+    return results
 
-def run(repo_name, limit =  100, order_by = "stargazers", stargazers = None, forkers = None, ratio = None, output_format = "table"):
+
+def run(
+    repo_name,
+    limit=100,
+    order_by="stargazers",
+    stargazers=None,
+    forkers=None,
+    ratio=None,
+    output_format="table",
+):
     """
     Run the script.
     """
