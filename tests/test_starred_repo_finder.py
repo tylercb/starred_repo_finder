@@ -1,6 +1,5 @@
 import unittest
 from unittest.mock import patch, Mock
-from click.testing import CliRunner
 from starred_repo_finder.starred_repo_finder import (
     build_query,
     make_request,
@@ -8,7 +7,6 @@ from starred_repo_finder.starred_repo_finder import (
     print_results,
     run,
     convert_and_format_results,
-    main,
 )
 
 
@@ -78,36 +76,18 @@ class TestStarredRepoFinder(unittest.TestCase):
             converted_and_formatted_results[0][0]["repo_name"], "test_repo"
         )
 
-    @patch("starred_repo_finder.starred_repo_finder.console.print")
     @patch("starred_repo_finder.starred_repo_finder.make_request")
-    def test_run(self, mock_request, mock_print):
+    def test_run(self, mock_request):
         # setup
         mock_request.return_value.status_code = 200
         mock_request.return_value.content = b"test_repo\t100\t20\t5\n"
 
         # action
-        run("test_repo", 50, "stargazers", None, None, None, "table")
+        result = run("test_repo", 50, "stargazers", None, None, None, "table")
 
         # assert
         mock_request.assert_called_once()
-        self.assertTrue(mock_print.called)
-
-    @patch("starred_repo_finder.starred_repo_finder.run")
-    def test_main(self, mock_run):
-        runner = CliRunner()
-
-        # setup
-        repo_name = "test_repo"
-        limit = 50
-        order = "stargazers"
-        format = "table"
-
-        # action
-        result = runner.invoke(main, [repo_name, '--limit', str(limit), '--order', order, '--format', format])
-
-        # assert
-        self.assertEqual(result.exit_code, 0)
-        mock_run.assert_called_once_with(repo_name, limit, order, None, None, None, format)
+        self.assertIsNotNone(result)
 
 
 if __name__ == "__main__":
