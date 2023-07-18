@@ -5,7 +5,7 @@ from starred_repo_finder.cli import cli
 
 
 class TestCLI(unittest.TestCase):
-    @patch("starred_repo_finder.cli.run")  # <-- This line has been updated
+    @patch("starred_repo_finder.cli.get_repos_starred_by_same_users")
     def test_cli(self, mock_run):
         runner = CliRunner()
 

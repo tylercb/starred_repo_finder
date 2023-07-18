@@ -1,5 +1,5 @@
 import click
-from starred_repo_finder import run, print_results
+from starred_repo_finder import get_repos_starred_by_same_users, print_results
 
 
 @click.command()
@@ -50,7 +50,7 @@ def cli(repo_name, limit, order, stargazers, forkers, ratio, format):
     """
     Parse command line arguments
     """
-    results, _ = run(
+    results, _ = get_repos_starred_by_same_users(
         repo_name,
         limit,
         order,
