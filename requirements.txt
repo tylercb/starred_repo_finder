@@ -1,3 +1,12 @@
-argparse
-requests
-rich
+bump2version==1.0.1
+bumpversion==0.6.0
+certifi==2023.5.7
+charset-normalizer==3.2.0
+click==8.1.5
+idna==3.4
+markdown-it-py==3.0.0
+mdurl==0.1.2
+Pygments==2.15.1
+requests==2.31.0
+rich==13.4.2
+urllib3==2.0.3

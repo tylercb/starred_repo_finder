@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="starred_repo_finder",
-    version="0.4.0",
+    version="0.5.0",
     description="A simple command line tool to find and explore GitHub repositories through stargazers for a given repository.",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
@@ -12,7 +12,7 @@ setup(
     license="MIT",
     packages=find_packages(),
     install_requires=[
-        "argparse",
+        "click",
         "requests",
         "rich",
     ],
