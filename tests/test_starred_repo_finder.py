@@ -1,5 +1,6 @@
 import unittest
 from unittest.mock import patch, Mock
+from click.testing import CliRunner
 from starred_repo_finder.starred_repo_finder import (
     build_query,
     make_request,
@@ -91,29 +92,22 @@ class TestStarredRepoFinder(unittest.TestCase):
         mock_request.assert_called_once()
         self.assertTrue(mock_print.called)
 
-    @patch("starred_repo_finder.starred_repo_finder.argparse.ArgumentParser.parse_args")
     @patch("starred_repo_finder.starred_repo_finder.run")
-    def test_main(self, mock_run, mock_parse_args):
-        # setup
-        mock_args = Mock()
-        mock_args.repo_name = "test_repo"
-        mock_args.limit = 50
-        mock_args.order = "stargazers"
-        mock_args.stargazers = None
-        mock_args.forkers = None
-        mock_args.ratio = None
-        mock_args.format = "table"
+    def test_main(self, mock_run):
+        runner = CliRunner()
 
-        mock_parse_args.return_value = mock_args
+        # setup
+        repo_name = "test_repo"
+        limit = 50
+        order = "stargazers"
+        format = "table"
 
         # action
-        main()
+        result = runner.invoke(main, [repo_name, '--limit', str(limit), '--order', order, '--format', format])
 
         # assert
-        mock_parse_args.assert_called_once()
-        mock_run.assert_called_once_with(
-            "test_repo", 50, "stargazers", None, None, None, "table"
-        )
+        self.assertEqual(result.exit_code, 0)
+        mock_run.assert_called_once_with(repo_name, limit, order, None, None, None, format)
 
 
 if __name__ == "__main__":
