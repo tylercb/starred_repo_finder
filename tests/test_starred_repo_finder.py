@@ -5,7 +5,7 @@ from starred_repo_finder.starred_repo_finder import (
     make_request,
     process_response,
     print_results,
-    run,
+    get_repos_starred_by_same_users,
     convert_and_format_results,
 )
 
@@ -77,13 +77,13 @@ class TestStarredRepoFinder(unittest.TestCase):
         )
 
     @patch("starred_repo_finder.starred_repo_finder.make_request")
-    def test_run(self, mock_request):
+    def test_get_repos_starred_by_same_users(self, mock_request):
         # setup
         mock_request.return_value.status_code = 200
         mock_request.return_value.content = b"test_repo\t100\t20\t5\n"
 
         # action
-        result = run("test_repo", 50, "stargazers", None, None, None, "table")
+        result = get_repos_starred_by_same_users("test_repo", 50, "stargazers", None, None, None, "table")
 
         # assert
         mock_request.assert_called_once()

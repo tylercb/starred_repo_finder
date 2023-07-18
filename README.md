@@ -13,28 +13,7 @@ Features:
 ## Installation
 
 ```bash
-pip install starred-repo-finder
-```
-
-## Build
-
-Create a new virtual environment:
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-Install requirements:
-
-```bash
-pip install -e .
-```
-
-Run tests:
-
-```bash
-pytest
+pip install starred-repo-finder --upgrade
 ```
 
 ## Usage
@@ -72,6 +51,92 @@ options:
   -fmt {table,csv,json,markdown}, --format {table,csv,json,markdown}
                         Output format (default: table). Options:
                         table, csv, json, markdown
+```
+
+Flask app usage:
+  
+```bash
+pip install starred-repo-finder --upgrade
+```
+
+Once the package is installed, import and use the `get_repos_starred_by_same_users()` function in your Flask app like this:
+
+```python
+from flask import Flask, jsonify, request
+from starred_repo_finder import get_repos_starred_by_same_users
+
+app = Flask(__name__)
+
+@app.route('/starred_repo', methods=['GET', 'POST'])
+def find_starred_repo():
+    # check the request method
+    if request.method == "POST":
+        params = request.json
+    else:
+        params = request.args
+
+    # repo_name is required
+    repo_name = params.get("repo_name")
+    if repo_name is None:
+        return (
+            jsonify({"error": "repo_name parameter is required"}),
+            400,
+        )
+
+    # get the optional parameters or use the default values
+    limit = int(params.get("limit", 10))
+    order = params.get("order", "stargazers")
+
+    # call the function from your package
+    results, _ = get_repos_starred_by_same_users(repo_name, limit, order)
+
+    # process the results as needed, here for instance we're sending them as JSON
+    return jsonify(results)
+```
+
+Jupyter Notebook usage:
+
+```python
+%pip install starred-repo-finder --upgrade
+```
+
+Once the package is installed, import and use the `get_repos_starred_by_same_users()` function in your Jupyter Notebook like this:
+
+```python
+# Import necessary packages
+from starred_repo_finder import get_repos_starred_by_same_users
+
+# Define parameters
+repo_name = 'vinta/awesome-python'
+limit = 10
+order = 'stargazers'
+
+# Call the function
+results, _ = get_repos_starred_by_same_users(repo_name, limit, order)
+
+# Display the results
+print(results)
+```
+
+## Build & Test
+
+Create a new virtual environment:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+Install requirements:
+
+```bash
+pip install -e .
+```
+
+Run tests:
+
+```bash
+pytest
 ```
 
 ## Examples
@@ -182,6 +247,8 @@ $ starred_repo_finder --limit=50 --format=markdown Ionaru/easy-markdown-editor >
 See [examples/ionaru-easy-markdown-editor.md](https://github.com/tylercb/starred_repo_finder/blob/main/examples/ionaru-easy-markdown-editor.md) for the output.
 
 ## Acknowledgements
+
+This would not be possible without the following:
 
 - [ClickHouse Playground](https://clickhouse.com/docs/en/getting-started/playground)
 - [ClickHouse Query](https://play.clickhouse.com/play)

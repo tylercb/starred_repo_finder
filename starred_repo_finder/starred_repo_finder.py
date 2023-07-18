@@ -152,7 +152,7 @@ def print_results(results, output_format):
     return results
 
 
-def run(
+def get_repos_starred_by_same_users(
     repo_name,
     limit=100,
     order_by="stargazers",
@@ -162,7 +162,7 @@ def run(
     output_format="table",
 ):
     """
-    Run the script.
+    Run the script and get repos starred by the same users.
     """
     query = build_query(repo_name, limit, order_by, stargazers, forkers, ratio)
 
