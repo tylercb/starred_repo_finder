@@ -43,7 +43,9 @@ Command line usage:
 
 ```bash
 $ starred_repo_finder --help
-usage: starred_repo_finder [-h] [-l LIMIT] [-o {stargazers,forkers,ratio}] [-s STARGAZERS] [-f FORKERS] [-r RATIO]
+usage: starred_repo_finder [-h] [-l LIMIT]
+                           [-o {stargazers,forkers,ratio}]
+                           [-s STARGAZERS] [-f FORKERS] [-r RATIO]
                            [-fmt {table,csv,json,markdown}]
                            repo_name
 
@@ -53,17 +55,23 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   -l LIMIT, --limit LIMIT
-                        The maximum number of results to return (default: 100)
+                        The maximum number of results to return
+                        (default: 100)
   -o {stargazers,forkers,ratio}, --order {stargazers,forkers,ratio}
-                        Column to order by (default: stargazers). Options: stargazers, forkers, ratio
+                        Column to order by (default: stargazers).
+                        Options: stargazers, forkers, ratio
   -s STARGAZERS, --stargazers STARGAZERS
-                        Minimum number of stargazers to include (default: None)
+                        Minimum number of stargazers to include
+                        (default: None)
   -f FORKERS, --forkers FORKERS
-                        Minimum number of forkers to include (default: None)
+                        Minimum number of forkers to include
+                        (default: None)
   -r RATIO, --ratio RATIO
-                        Minimum ratio of stargazers to forkers to include (default: None)
+                        Minimum ratio of stargazers to forkers to
+                        include (default: None)
   -fmt {table,csv,json,markdown}, --format {table,csv,json,markdown}
-                        Output format (default: table). Options: table, csv, json, markdown
+                        Output format (default: table). Options:
+                        table, csv, json, markdown
 ```
 
 ## Examples
