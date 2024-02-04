@@ -78,26 +78,40 @@ def process_response(response):
     return [line.split("\t") for line in lines if line]
 
 
+def normalize_row(row):
+    """
+    Normalize the row to a dictionary with the keys 'repo_name', 'github_url', 'stargazers', 'forkers', and 'ratio'.
+    """
+    if isinstance(row, dict):
+        return {
+            "repo_name": row.get("repo_name"),
+            "github_url": f"https://github.com/{row.get('repo_name')}",
+            "stargazers": int(row.get("stargazers", 0)),
+            "forkers": int(row.get("forkers", 0)),
+            "ratio": float(row.get("ratio", 0)) if row.get("ratio") != "\\N" else None,
+        }
+    elif isinstance(row, (list, tuple)) and len(row) >= 4:
+        return {
+            "repo_name": row[0],
+            "github_url": f"https://github.com/{row[0]}",
+            "stargazers": int(row[1]),
+            "forkers": int(row[2]),
+            "ratio": float(row[3]) if row[3] != "\\N" else None,
+        }
+    else:
+        raise ValueError(
+            "Each row in results must be a list, tuple with at least 4 elements, or a dictionary."
+        )
+
+
 def convert_and_format_results(results, output_format):
     """
     Converts and formats results list.
     """
     converted_results = []
     for row in results:
-        repo_name = row[0]
-        github_url = f"https://github.com/{repo_name}"
-        stargazers = int(row[1])
-        forkers = int(row[2])
-        ratio = float(row[3]) if row[3] != "\\N" else None
-        converted_results.append(
-            {
-                "repo_name": repo_name,
-                "github_url": github_url,
-                "stargazers": stargazers,
-                "forkers": forkers,
-                "ratio": ratio,
-            }
-        )
+        normalized_row = normalize_row(row)
+        converted_results.append(normalized_row)
 
     if output_format == "csv":
         output = "repo_name,github_url,stargazers,forkers,ratio\n"

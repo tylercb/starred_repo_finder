@@ -24,6 +24,6 @@ setup(
     ],
     entry_points="""
         [console_scripts]
-        starred_repo_finder=cli:cli
+        starred_repo_finder=starred_repo_finder.cli:cli
     """,
 )
