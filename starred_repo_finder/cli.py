@@ -1,8 +1,10 @@
 import click
 from .starred_repo_finder import get_repos_starred_by_same_users, print_results
+from .__version__ import __version__
 
 
 @click.command()
+@click.version_option(version=__version__, prog_name="starred_repo_finder")
 @click.argument("repo_name")
 @click.option(
     "--limit",

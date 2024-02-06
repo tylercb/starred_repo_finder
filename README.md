@@ -246,6 +246,14 @@ $ starred_repo_finder --limit=50 --format=markdown Ionaru/easy-markdown-editor >
 
 See [examples/ionaru-easy-markdown-editor.md](https://github.com/tylercb/starred_repo_finder/blob/main/examples/ionaru-easy-markdown-editor.md) for the output.
 
+## Tools
+
+Bump the version:
+
+```bash
+bumpversion minor
+```
+
 ## Acknowledgements
 
 This would not be possible without the following:
