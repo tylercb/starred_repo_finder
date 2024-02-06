@@ -1,5 +1,5 @@
 import click
-from starred_repo_finder import get_repos_starred_by_same_users, print_results
+from .starred_repo_finder import get_repos_starred_by_same_users, print_results
 
 
 @click.command()
