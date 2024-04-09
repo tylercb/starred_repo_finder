@@ -103,22 +103,21 @@ def convert_and_format_results(results, output_format):
     """
     Converts and formats results list.
     """
-    converted_results = []
-    for row in results:
-        normalized_row = normalize_row(row)
-        converted_results.append(normalized_row)
+    # Using list comprehension
+    converted_results = [normalize_row(row) for row in results]
 
     if output_format == "csv":
-        output = "repo_name,github_url,stargazers,forkers,ratio\n"
-        for row in converted_results:
-            output += f'{row["repo_name"]},{row["github_url"]},{row["stargazers"]},{row["forkers"]},{row["ratio"]}\n'
+        
+        lines = [",".join([str(row[key]) for key in ["repo_name", "github_url", "stargazers", "forkers", "ratio"]]) for row in converted_results]
+        output = "repo_name,github_url,stargazers,forkers,ratio\n" + "\n".join(lines)
     elif output_format == "json":
         output = json.dumps(converted_results, indent=4)
     elif output_format == "markdown":
-        output = "| Project | Stargazers | Forkers | Ratio |\n|---|---|---|---|\n"
-        for row in converted_results:
-            output += f'| [{row["repo_name"]}]({row["github_url"]}) | {row["stargazers"]} | {row["forkers"]} | {row["ratio"]} |\n'
+        # Generate Markdown table format more
+        md_lines = [f'| [{row["repo_name"]}]({row["github_url"]}) | {row["stargazers"]} | {row["forkers"]} | {row.get("ratio", "N/A")} |' for row in converted_results]
+        output = "| Project | Stargazers | Forkers | Ratio |\n|---|---|---|---|\n" + "\n".join(md_lines)
     elif output_format == "table":
+        from rich.table import Table
         table = Table(show_header=True, header_style="bold magenta")
         table.add_column("Project")
         table.add_column("Stargazers")
@@ -126,15 +125,9 @@ def convert_and_format_results(results, output_format):
         table.add_column("Ratio")
 
         for row in converted_results:
-            stargazers = "{:,}".format(row["stargazers"])
-            forkers = "{:,}".format(row["forkers"])
+            stargazers, forkers = "{:,}".format(row["stargazers"]), "{:,}".format(row["forkers"])
             ratio = row["ratio"] if row["ratio"] is not None else "N/A"
-            table.add_row(
-                f'[link={row["github_url"]}] {row["repo_name"]} [/link]',
-                stargazers,
-                forkers,
-                str(ratio),
-            )
+            table.add_row(f'[link={row["github_url"]}] {row["repo_name"]} [/link]', stargazers, forkers, str(ratio))
         output = table
     else:
         output = str(converted_results)
