@@ -9,4 +9,5 @@ mdurl==0.1.2
 Pygments==2.15.1
 requests==2.31.0
 rich==13.4.2
+setuptools==69.2.0
 urllib3==2.0.7
