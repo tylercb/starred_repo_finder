@@ -30,6 +30,26 @@ class TestCLI(unittest.TestCase):
         mock_run.assert_called_once_with(
             repo_name, limit, order, None, None, None, format
         )
+        
+    @patch("starred_repo_finder.cli.get_repos_starred_by_same_users")
+    def test_cli_invalid_arguments(self, mock_run):
+        runner = CliRunner()
+
+        # setup
+        repo_name = "test_repo"
+        limit = -1  # invalid limit
+        order = "stargazers"
+        format = "table"
+
+        # action
+        result = runner.invoke(
+            cli,
+            [repo_name, "--limit", str(limit), "--order", order, "--format", format],
+        )
+
+        # assert
+        self.assertNotEqual(result.exit_code, 0)
+        mock_run.assert_not_called()
 
 
 if __name__ == "__main__":
