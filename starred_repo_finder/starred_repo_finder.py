@@ -79,29 +79,24 @@ def process_response(response):
 
 
 def normalize_row(row):
-    """
-    Normalize the row to a dictionary with the keys 'repo_name', 'github_url', 'stargazers', 'forkers', and 'ratio'.
-    """
     if isinstance(row, dict):
-        return {
-            "repo_name": row.get("repo_name"),
-            "github_url": f"https://github.com/{row.get('repo_name')}",
-            "stargazers": int(row.get("stargazers", 0)),
-            "forkers": int(row.get("forkers", 0)),
-            "ratio": float(row.get("ratio")) if row.get("ratio") not in [None, "\\N"] else None,
-        }
+        repo_name = row.get("repo_name")
+        stargazers = row.get("stargazers", 0)
+        forkers = row.get("forkers", 0)
+        ratio = row.get("ratio")
     elif isinstance(row, (list, tuple)) and len(row) >= 4:
-        return {
-            "repo_name": row[0],
-            "github_url": f"https://github.com/{row[0]}",
-            "stargazers": int(row[1]),
-            "forkers": int(row[2]),
-            "ratio": float(row[3]) if row[3] not in [None, "\\N"] else None,
-        }
+        repo_name, stargazers, forkers, ratio = row[:4]
     else:
-        raise ValueError(
-            "Each row in results must be a list, tuple with at least 4 elements, or a dictionary."
-        )
+        raise ValueError("Invalid row format.")
+
+    return {
+        "repo_name": repo_name,
+        "github_url": f"https://github.com/{repo_name}",
+        "stargazers": int(stargazers),
+        "forkers": int(forkers),
+        "ratio": None if ratio in [None, "\\N"] else float(ratio),
+    }
+
 
 
 def convert_and_format_results(results, output_format):
