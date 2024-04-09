@@ -88,7 +88,7 @@ def normalize_row(row):
             "github_url": f"https://github.com/{row.get('repo_name')}",
             "stargazers": int(row.get("stargazers", 0)),
             "forkers": int(row.get("forkers", 0)),
-            "ratio": float(row.get("ratio", 0)) if row.get("ratio") != "\\N" else None,
+            "ratio": float(row.get("ratio")) if row.get("ratio") not in [None, "\\N"] else None,
         }
     elif isinstance(row, (list, tuple)) and len(row) >= 4:
         return {
@@ -96,7 +96,7 @@ def normalize_row(row):
             "github_url": f"https://github.com/{row[0]}",
             "stargazers": int(row[1]),
             "forkers": int(row[2]),
-            "ratio": float(row[3]) if row[3] != "\\N" else None,
+            "ratio": float(row[3]) if row[3] not in [None, "\\N"] else None,
         }
     else:
         raise ValueError(
