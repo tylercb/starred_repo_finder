@@ -79,6 +79,9 @@ def process_response(response):
 
 
 def normalize_row(row):
+    """
+    Normalize a row from the results.
+    """
     if isinstance(row, dict):
         repo_name = row.get("repo_name")
         stargazers = row.get("stargazers", 0)
