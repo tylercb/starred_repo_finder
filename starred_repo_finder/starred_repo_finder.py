@@ -29,7 +29,7 @@ def build_query(repo_name, limit, order_by, min_stargazers, min_forkers, min_rat
     :param min_ratio: The minimum ratio of stargazers to forkers a repository must have to be included in the results.
     :return: The SQL query as a string.
     """
-    logging.info(f"Building query for repo: {repo_name}")
+    logger.info(f"Building query for repo: {repo_name}")
     # Add HAVING clauses to the query if min_stargazers or min_forkers or min_ratio is provided
     having_clause = "HAVING 1=1"
     if min_stargazers:
@@ -66,7 +66,9 @@ def make_request(query, url, params):
     """
     Make a request to the ClickHouse server.
     """
-    logger.info(f"Making request to URL: {url} with query: {query} and params: {params}") 
+    logger.info(
+        f"Making request to URL: {url} with query: {query} and params: {params}"
+    )
     try:
         return requests.post(url, params=params, data=query, timeout=10)
     except requests.exceptions.RequestException as err:
@@ -79,7 +81,11 @@ def process_response(response):
     """
     Process the response from the request to the ClickHouse server.
     """
-    logger.info('Processing response with status code: %s and content: %s', response.status_code, response.content.decode())
+    logger.info(
+        "Processing response with status code: %s and content: %s",
+        response.status_code,
+        response.content.decode(),
+    )
     if response.status_code != 200:
         console.print(
             f"Request failed with status code {response.status_code}: {response.content.decode()}",
@@ -107,14 +113,18 @@ def normalize_row(row):
         logger.error(f"Invalid row format: {row}")
         raise ValueError("Invalid row format.")
 
+    # Validate repo_name presence to avoid invalid GitHub URLs later
+    if repo_name in [None, "", "\\N"]:
+        logger.error(f"Missing or invalid repo_name in row: {row}")
+        raise ValueError("Missing repo_name.")
+
     return {
         "repo_name": repo_name,
         "github_url": f"https://github.com/{repo_name}",
-        "stargazers": int(stargazers),
-        "forkers": int(forkers),
-        "ratio": None if ratio in [None, "\\N"] else float(ratio),
+        "stargazers": 0 if stargazers in [None, "\\N", ""] else int(stargazers),
+        "forkers": 0 if forkers in [None, "\\N", ""] else int(forkers),
+        "ratio": None if ratio in [None, "\\N", ""] else float(ratio),
     }
-
 
 
 def convert_and_format_results(results, output_format):
@@ -123,11 +133,32 @@ def convert_and_format_results(results, output_format):
     """
     # Using list comprehension
     logger.info(f"Converting and formatting results: {results}")
-    converted_results = [normalize_row(row) for row in results]
+    converted_results = []
+    for row in results:
+        try:
+            converted_results.append(normalize_row(row))
+        except ValueError:
+            # Skip rows that cannot be normalized
+            logger.warning(f"Skipping invalid row during conversion: {row}")
+            continue
 
     if output_format == "csv":
         logger.info("Output format is CSV")
-        lines = [",".join([str(row[key]) for key in ["repo_name", "github_url", "stargazers", "forkers", "ratio"]]) for row in converted_results]
+        lines = [
+            ",".join(
+                [
+                    str(row[key])
+                    for key in [
+                        "repo_name",
+                        "github_url",
+                        "stargazers",
+                        "forkers",
+                        "ratio",
+                    ]
+                ]
+            )
+            for row in converted_results
+        ]
         output = "repo_name,github_url,stargazers,forkers,ratio\n" + "\n".join(lines)
     elif output_format == "json":
         logger.info("Output format is JSON")
@@ -135,11 +166,17 @@ def convert_and_format_results(results, output_format):
     elif output_format == "markdown":
         logger.info("Output format is Markdown")
         # Generate Markdown table format more
-        md_lines = [f'| [{row["repo_name"]}]({row["github_url"]}) | {row["stargazers"]} | {row["forkers"]} | {row.get("ratio", "N/A")} |' for row in converted_results]
-        output = "| Project | Stargazers | Forkers | Ratio |\n|---|---|---|---|\n" + "\n".join(md_lines)
+        md_lines = [
+            f'| [{row["repo_name"]}]({row["github_url"]}) | {row["stargazers"]} | {row["forkers"]} | {row.get("ratio", "N/A")} |'
+            for row in converted_results
+        ]
+        output = (
+            "| Project | Stargazers | Forkers | Ratio |\n|---|---|---|---|\n"
+            + "\n".join(md_lines)
+        )
     elif output_format == "table":
         logger.info("Output format is Table")
-        from rich.table import Table
+
         table = Table(show_header=True, header_style="bold magenta")
         table.add_column("Project")
         table.add_column("Stargazers")
@@ -147,9 +184,16 @@ def convert_and_format_results(results, output_format):
         table.add_column("Ratio")
 
         for row in converted_results:
-            stargazers, forkers = "{:,}".format(row["stargazers"]), "{:,}".format(row["forkers"])
+            stargazers, forkers = "{:,}".format(row["stargazers"]), "{:,}".format(
+                row["forkers"]
+            )
             ratio = row["ratio"] if row["ratio"] is not None else "N/A"
-            table.add_row(f'[link={row["github_url"]}] {row["repo_name"]} [/link]', stargazers, forkers, str(ratio))
+            table.add_row(
+                f'[link={row["github_url"]}] {row["repo_name"]} [/link]',
+                stargazers,
+                forkers,
+                str(ratio),
+            )
         output = table
     else:
         output = str(converted_results)
@@ -189,7 +233,16 @@ def get_repos_starred_by_same_users(
     """
     Run the script and get repos starred by the same users.
     """
-    logger.info('Running script with repo_name: %s, limit: %s, order_by: %s, stargazers: %s, forkers: %s, ratio: %s, output_format: %s', repo_name, limit, order_by, stargazers, forkers, ratio, output_format)
+    logger.info(
+        "Running script with repo_name: %s, limit: %s, order_by: %s, stargazers: %s, forkers: %s, ratio: %s, output_format: %s",
+        repo_name,
+        limit,
+        order_by,
+        stargazers,
+        forkers,
+        ratio,
+        output_format,
+    )
     query = build_query(repo_name, limit, order_by, stargazers, forkers, ratio)
 
     # Make the request
@@ -208,5 +261,5 @@ def get_repos_starred_by_same_users(
 
     # Process the response
     results = process_response(response)
-    logger.info('Script finished')
+    logger.info("Script finished")
     return convert_and_format_results(results, output_format)

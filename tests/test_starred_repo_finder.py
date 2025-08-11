@@ -7,6 +7,7 @@ from starred_repo_finder.starred_repo_finder import (
     print_results,
     get_repos_starred_by_same_users,
     convert_and_format_results,
+    normalize_row,
 )
 
 
@@ -76,6 +77,38 @@ class TestStarredRepoFinder(unittest.TestCase):
             converted_and_formatted_results[0][0]["repo_name"], "test_repo"
         )
 
+    def test_normalize_row_with_missing_repo_name_raises(self):
+        with self.assertRaises(ValueError):
+            normalize_row(
+                {"repo_name": None, "stargazers": 1, "forkers": 1, "ratio": 1}
+            )
+        with self.assertRaises(ValueError):
+            normalize_row([None, 1, 1, 1])
+
+    def test_normalize_row_defaults_for_counts_and_ratio(self):
+        row = normalize_row(
+            {
+                "repo_name": "owner/repo",
+                "stargazers": None,
+                "forkers": "",
+                "ratio": "",
+            }
+        )
+        self.assertEqual(row["stargazers"], 0)
+        self.assertEqual(row["forkers"], 0)
+        self.assertIsNone(row["ratio"])
+
+    def test_convert_and_format_results_skips_invalid_rows(self):
+        results, _ = convert_and_format_results(
+            [
+                {"repo_name": None, "stargazers": 1, "forkers": 1, "ratio": 1},
+                ["valid/repo", "10", "2", "5"],
+            ],
+            "json",
+        )
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0]["repo_name"], "valid/repo")
+
     @patch("starred_repo_finder.starred_repo_finder.make_request")
     def test_get_repos_starred_by_same_users(self, mock_request):
         # setup
@@ -83,7 +116,9 @@ class TestStarredRepoFinder(unittest.TestCase):
         mock_request.return_value.content = b"test_repo\t100\t20\t5\n"
 
         # action
-        result = get_repos_starred_by_same_users("test_repo", 50, "stargazers", None, None, None, "table")
+        result = get_repos_starred_by_same_users(
+            "test_repo", 50, "stargazers", None, None, None, "table"
+        )
 
         # assert
         mock_request.assert_called_once()
