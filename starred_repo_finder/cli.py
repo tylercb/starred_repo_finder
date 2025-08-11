@@ -52,6 +52,9 @@ def cli(repo_name, limit, order, stargazers, forkers, ratio, format):
     """
     Parse command line arguments
     """
+    if limit <= 0:
+        raise click.ClickException("Error: Limit must be greater than 0.")
+    
     results, _ = get_repos_starred_by_same_users(
         repo_name,
         limit,

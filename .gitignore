@@ -9,3 +9,4 @@ build/
 *.pyd
 venv/
 .vscode/
+starred_repo_finder.log
