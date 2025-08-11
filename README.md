@@ -12,6 +12,14 @@ Features:
 
 ## Installation
 
+Using uv (recommended):
+
+```bash
+uv pip install starred-repo-finder --upgrade
+```
+
+Or with pip:
+
 ```bash
 pip install starred-repo-finder --upgrade
 ```
@@ -55,6 +63,14 @@ options:
 
 Flask app usage:
   
+Using uv:
+
+```bash
+uv pip install starred-repo-finder --upgrade
+```
+
+Or with pip:
+
 ```bash
 pip install starred-repo-finder --upgrade
 ```
@@ -97,6 +113,9 @@ def find_starred_repo():
 Jupyter Notebook usage:
 
 ```python
+# in notebooks with uv available:
+!uv pip install starred-repo-finder --upgrade
+# or using the built-in Jupyter pip magic:
 %pip install starred-repo-finder --upgrade
 ```
 
@@ -120,23 +139,34 @@ print(results)
 
 ## Build & Test
 
-Create a new virtual environment:
+Local development now uses uv for environment and dependency management.
+
+1) Install uv (macOS/Linux):
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate
+curl -LsSf https://astral.sh/uv/install.sh | sh
+# then restart your shell so `uv` is on PATH
 ```
 
-Install requirements:
+2) Create and activate a virtual environment with uv:
 
 ```bash
-pip install -e .
+uv venv  # creates .venv in the project
+source ./.venv/bin/activate
 ```
 
-Run tests:
+3) Install the project (editable) and test dependencies:
+
+```bash
+uv pip install -e . pytest
+```
+
+4) Run tests:
 
 ```bash
 pytest
+# or
+uv run pytest
 ```
 
 ## Examples
@@ -251,7 +281,7 @@ See [examples/ionaru-easy-markdown-editor.md](https://github.com/tylercb/starred
 Bump the version:
 
 ```bash
-bumpversion minor
+uvx bump2version minor
 ```
 
 ## Acknowledgements
